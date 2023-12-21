@@ -1,32 +1,41 @@
 <?php
 require_once(__DIR__ . "/../lib/functions.php");
 
-// Note: Resolving cookie issues with port numbers
+// Note: this is to resolve cookie issues with port numbers
 $domain = $_SERVER["HTTP_HOST"];
 if (strpos($domain, ":")) {
     $domain = explode(":", $domain)[0];
 }
 
-$localWorks = true; // Some people have issues with localhost for the cookie params
-// If you're one of those people, make this false
+$localWorks = true; // some people have issues with localhost for the cookie params
+// if you're one of those people make this false
 
-// Extra condition added to "resolve" the localhost issue for the session cookie
-if (($localWorks && $domain == "localhost") || $domain != "localhost") {
-    session_set_cookie_params([
-        "lifetime" => 60 * 60,
-        "path" => "$BASE_PATH",
-        "domain" => $domain,
-        "secure" => true,
-        "httponly" => true,
-        "samesite" => "lax"
-    ]);
+// Start the session only if it hasn't been started yet
+if (session_status() === PHP_SESSION_NONE) {
+    // this is an extra condition added to "resolve" the localhost issue for the session cookie
+    if (($localWorks && $domain == "localhost") || $domain != "localhost") {
+        // Set the session cookie parameters
+        $cookieParams = session_get_cookie_params();
+        $cookieParams["lifetime"] = 60 * 60;
+        $cookieParams["path"] = "$BASE_PATH";
+        $cookieParams["domain"] = $domain;
+        $cookieParams["secure"] = true;
+        $cookieParams["httponly"] = true;
+        $cookieParams["samesite"] = "lax";
+
+        // Apply the modified cookie parameters
+        session_set_cookie_params($cookieParams);
+    }
+
+    // Start the session
+    session_start();
 }
 
-session_start();
 ?>
-<!-- Include CSS and JS files -->
+<!-- include css and js files -->
 <link rel="stylesheet" href="<?php echo get_url('styles.css'); ?>">
 <script src="<?php echo get_url('helpers.js'); ?>"></script>
+
 <nav>
     <ul>
         <?php if (is_logged_in()) : ?>

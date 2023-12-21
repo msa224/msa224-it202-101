@@ -1,23 +1,71 @@
+/* styles.css */
+
+/* Flash message styles */
 .alert-success {
-    background-color: green
+    background-color: #2ecc71; /* Emerald Green */
+    color: #ffffff;
 }
 
 .alert-warning {
-    background-color: yellow;
+    background-color: #f39c12; /* Sunflower Yellow */
+    color: #333333;
 }
 
 .alert-danger {
-    background-color: red;
+    background-color: #e74c3c; /* Alizarin Red */
+    color: #ffffff;
 }
 
 .alert-info {
-    background-color: teal;
+    background-color: #3498db; /* Belize Hole Blue */
+    color: #ffffff;
 }
-nav li{display: inline; background-color: rebeccapurple;}
-nav li a{color: hotpink}
-input{border-radius: 50%;}
-body{
-    background-color: hotpink;
-    color: rgb(153, 0, 153);
 
+/* Navigation styles */
+nav {
+    background-color: #34495e; /* Wet Asphalt Dark Blue */
+    color: #ecf0f1;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #ecf0f1;
+    font-weight: bold;
+}
+
+/* Input styles */
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 2px solid #3498db; /* Belize Hole Blue */
+    border-radius: 5px;
+}
+
+/* Body styles */
+body {
+    background-color: #ecf0f1; /* Clouds Gray */
+    color: #333333;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Footer styles */
+footer {
+    background-color: #2c3e50; /* Midnight Blue */
+    color: #ecf0f1;
+    padding: 10px 0;
+    text-align: center;
 }
